@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle, #0f172a, #020617);
+    color: #00f7ff;
+}
+
+/* Container */
+.container {
+    text-align: center;
+    padding: 30px;
+}
+
+/* Title */
+h1 {
+    text-shadow: 0 0 20px #00f7ff;
+    margin-bottom: 20px;
+}
+
+/* Textarea */
+textarea {
+    width: 80%;
+    height: 220px;
+    background: #020617;
+    color: #00f7ff;
+    border: 1px solid #00f7ff;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f7ff;
+}
+
+/* Button */
+button {
+    margin-top: 15px;
+    background: #00f7ff;
+    color: black;
+    padding: 10px 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00f7ff;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00c3cc;
+    transform: scale(1.05);
+}
+
+/* Output box */
+.output {
+    margin-top: 25px;
+}
+
+/* Error box */
+.error-box {
+    border: 1px solid #00f7ff;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    background: rgba(0, 255, 255, 0.05);
+    box-shadow: 0 0 15px #00f7ff;
+    text-align: left;
+}
+
+/* Error text */
+.error-type {
+    color: #ff4c4c;
+    font-weight: bold;
+}
+
+/* Code line highlight */
+.code-line {
+    background: rgba(255, 0, 0, 0.2);
+    padding: 8px;
+    border-left: 4px solid red;
+    margin: 10px 0;
+}
+
+/* Suggestion */
+.suggestion {
+    color: #00ff9c;
+    font-weight: bold;
+}
+
+/* Success */
+.success {
+    color: #00ff9c;
+    font-size: 18px;
+}
