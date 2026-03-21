@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>⚡ Python Debugger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>⚡ PYTHON DEBUGGER</h1>
+
+    <form method="POST">
+        <textarea name="code" placeholder="Paste your Python code here...">{{ code }}</textarea>
+        <br>
+        <button type="submit">Analyze Code</button>
+    </form>
+
+    {% if result %}
+    <div class="output">
+        {% if result.success %}
+            <p class="success">✅ {{ result.success }}</p>
+        {% else %}
+            <div class="error-box">
+                <p class="error-type">❌ {{ result.type }}</p>
+                <p><b>Message:</b> {{ result.message }}</p>
+                <p><b>Line:</b> {{ result.line }}</p>
+                <p class="code-line">👉 {{ result.code_line }}</p>
+                <p class="suggestion">💡 {{ result.suggestion }}</p>
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
