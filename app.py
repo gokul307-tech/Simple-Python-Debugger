@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import traceback
+import os
 
 app = Flask(__name__)
 
@@ -16,17 +17,28 @@ SUGGESTIONS = {
 def check_code(code):
     try:
         compile(code, "user_code.py", "exec")
-        exec(code, {})
+
+        # ⚠ Safe execution (restricted built-ins)
+        exec(code, {"__builtins__": {}})
+
         return None
+
     except SyntaxError as e:
         return {
             "type": "SyntaxError",
             "message": e.msg,
             "line": e.lineno
         }
+
     except Exception as e:
         tb = traceback.extract_tb(e.__traceback__)
-        line = tb[-1].lineno if tb else None
+        line = None
+
+        # Get correct user line
+        for entry in reversed(tb):
+            if entry.filename == "user_code.py":
+                line = entry.lineno
+                break
 
         return {
             "type": type(e).__name__,
@@ -47,6 +59,9 @@ def get_suggestion(error):
     if etype == "NameError":
         suggestion = "Define the variable before using it"
 
+    if etype == "TypeError" and "unsupported operand" in msg:
+        suggestion = "Use compatible data types"
+
     return suggestion
 
 
@@ -63,6 +78,7 @@ def index():
 
         if error:
             lines = code.split("\n")
+
             if error["line"] and error["line"] <= len(lines):
                 error_line = lines[error["line"] - 1]
 
@@ -77,8 +93,8 @@ def index():
             result = {"success": "No errors found!"}
 
     return render_template("index.html", result=result, code=code)
-        
+
 
 if __name__ == "__main__":
-    port=int(os.environ.get("PORT",10000))
-    app.run(host="0.0.0.0",port=port)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
