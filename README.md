@@ -1,136 +1,71 @@
-# ⚡ Python Debugger (Web-Based)
+# Simple Python Debugger
+A **beginner-friendly Python debugging tool** built to answer one simple question:
+“What went wrong in my code, and how can I fix it?”
 
-A **futuristic Python error checker** built using Flask that helps beginners and students quickly identify and understand errors in their code.
-
----
-
-## 🚀 Features
-
-* 🔍 Detects Python errors (Syntax & Runtime)
-* 📍 Shows exact **line number** where error occurs
-* 👉 Highlights the **problematic code line**
-* 💡 Provides **simple suggestions to fix errors**
-* 🎨 Futuristic neon UI design
-* 🌐 Web-based interface (runs in browser)
-
----
-
-## 🧠 Supported Errors
-
-* SyntaxError
-* NameError
-* TypeError
-* IndentationError
-* ZeroDivisionError
-
----
-
-## 🛠️ Tech Stack
-
-* Python
-* Flask
-* HTML, CSS
-* JavaScript (basic)
-
----
-
-## 📂 Project Structure
-
-```
-PYTHON_DEBUGGER/
+## The Journey
+**Week 1** — Understanding Errors
+I started by studying common Python errors such as SyntaxError, NameError, TypeError, IndexError, and ZeroDivisionError. I also planned what a beginner-friendly debugger should provide.
+**Week 2** — Building the Analyzer
+I created the first analyzer.py and used Python's compile() function to detect syntax errors and identify their line numbers.
+**Week 3** — Runtime Errors
+I added runtime error detection using exec(), try-except, and Python's traceback module.
+**Week 4** — Finding the Exact Line
+I improved traceback handling so the debugger could identify the error line from the user's code instead of the debugger itself.
+**Week 5** — Building the Web App
+I connected the analyzer to Flask and created a simple webpage where users could enter Python code and analyze it.
+**Week 6** — Adding Suggestions
+I created suggestions.py to provide simple explanations and possible fixes instead of only showing Python's error message.
+**Week 7** — Designing the Interface
+I created the CSS and developed a dark, terminal-inspired interface with error highlighting and beginner-friendly results.
+**Week 8** — Testing & GitHub
+I tested the debugger using larger Python programs, fixed issues, cleaned the project structure, and uploaded the completed project to GitHub.
+## Features
+ Runtime error detection
+Error type identification
+Python syntax checking
+Error line detection
+Problematic code display
+Beginner-friendly explanations
+Fix suggestions
+Simple web interface
+## Technologies
+Python
+Flask
+HTML
+CSS
+Git & GitHub
+## Project Structure
+Simple-Python-Debugger/
 │
 ├── app.py
+├── analyzer.py
+├── suggestions.py
+├── requirements.txt
+├── Procfile
+├── .gitignore
+│
 ├── templates/
 │   └── index.html
-├── static/
-│   └── style.css
-├── requirements.txt
-└── Procfile
-```
-
----
-
-## ⚙️ Installation (Local Setup)
-
-1. Clone the repository:
-
-```
-git clone https://github.com/your-username/python-debugger.git
-cd python-debugger
-```
-
-2. Install dependencies:
-
-```
+│
+└── static/
+    └── style.css
+**Run Locally**
+git clone https://github.com/gokul307-tech/Simple-Python-Debugger.git
+cd Simple-Python-Debugger
 pip install -r requirements.txt
-```
-
-3. Run the app:
-
-```
 python app.py
-```
-
-4. Open in browser:
-
-```
-http://127.0.0.1:5000/
-```
-
----
-
-## 🌐 Live Demo
-
-👉 Add your deployed link here (Render / Railway)
-
----
-
-## 🧪 Example
-
-### Input:
-
-```python
-a = 10
-if a == 10
-    print(a)
-```
-
-### Output:
-
-```
-❌ SyntaxError  
-📍 Line: 2  
-👉 Code: if a == 10  
-💡 Fix: Add ':' at the end  
-```
-
----
-
-## 🎯 Purpose
-
-This project is designed for:
-
-* Students (11th & 12th standard)
-* Beginners learning Python
-* Quick debugging without IDEs
-
----
-
-## 🚀 Future Improvements
-
-* 🧠 AI-based smart debugging
-* 🖥️ VS Code-like editor
-* 🎯 Multiple error detection
-* 🌐 Full online deployment
-
----
-
-## 👨‍💻 Author
-
-**Gokul Vasan**
-
----
-
-## ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
+Then open:
+http://127.0.0.1:5000
+## Current Scope
+This is a beginner-level Python debugger designed for individual Python programs.
+It is not intended for debugging complete applications, mobile apps, or multi-file projects.
+## Future Ideas
+AI-powered explanations
+Logical error detection
+Breakpoints
+Variable tracking
+Step-by-step debugging
+Code quality suggestions
+## Author
+Gokul Vasan
+Every error became a lesson. Every bug became another problem to solve
