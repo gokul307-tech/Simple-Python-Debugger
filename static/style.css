@@ -1,93 +1,377 @@
+/* ------------------------------
+   Basic Page
+------------------------------ */
+
 body {
     margin: 0;
-    font-family: 'Courier New', monospace;
+    font-family: "Courier New", monospace;
     background: radial-gradient(circle, #0f172a, #020617);
     color: #00f7ff;
+    min-height: 100vh;
 }
 
-/* Container */
+
+/* ------------------------------
+   Main Container
+------------------------------ */
+
 .container {
-    text-align: center;
-    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 0;
 }
 
-/* Title */
+
+/* ------------------------------
+   Title
+------------------------------ */
+
 h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+
     text-shadow: 0 0 20px #00f7ff;
-    margin-bottom: 20px;
 }
 
-/* Textarea */
+
+/* Description */
+
+.description {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+
+/* ------------------------------
+   Code Editor
+------------------------------ */
+
 textarea {
-    width: 80%;
-    height: 220px;
+    width: 100%;
+    height: 300px;
+
+    box-sizing: border-box;
+
     background: #020617;
     color: #00f7ff;
+
     border: 1px solid #00f7ff;
-    padding: 12px;
-    font-size: 14px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #00f7ff;
+
+    padding: 15px;
+
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.5;
+
+    resize: vertical;
+
+    outline: none;
+
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.4);
 }
 
-/* Button */
-button {
+
+/* Textarea when clicked */
+
+textarea:focus {
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.7);
+}
+
+
+/* ------------------------------
+   Buttons
+------------------------------ */
+
+.buttons {
+    text-align: center;
     margin-top: 15px;
+}
+
+
+button {
     background: #00f7ff;
-    color: black;
-    padding: 10px 25px;
+    color: #020617;
+
+    padding: 11px 25px;
+
     border: none;
-    font-weight: bold;
-    cursor: pointer;
     border-radius: 8px;
-    box-shadow: 0 0 15px #00f7ff;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+
     transition: 0.3s;
 }
 
+
+/* Button hover */
+
 button:hover {
     background: #00c3cc;
-    transform: scale(1.05);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 0 25px rgba(0, 247, 255, 0.9);
 }
 
-/* Output box */
-.output {
-    margin-top: 25px;
+
+/* Clear button */
+
+.clear-button {
+    margin-left: 10px;
+
+    background: #334155;
+    color: white;
+
+    box-shadow: none;
 }
 
-/* Error box */
-.error-box {
-    border: 1px solid #00f7ff;
+
+.clear-button:hover {
+    background: #475569;
+
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+
+/* ------------------------------
+   Result Area
+------------------------------ */
+
+.result {
+    margin-top: 30px;
+}
+
+
+/* ------------------------------
+   Error Box
+------------------------------ */
+
+.error {
+    border: 1px solid #ff4c4c;
+
     padding: 20px;
-    width: 60%;
-    margin: auto;
+
     border-radius: 10px;
-    background: rgba(0, 255, 255, 0.05);
-    box-shadow: 0 0 15px #00f7ff;
-    text-align: left;
+
+    background: rgba(255, 0, 0, 0.05);
+
+    box-shadow: 0 0 15px rgba(255, 76, 76, 0.4);
 }
 
-/* Error text */
-.error-type {
+
+/* Error heading */
+
+.error h2 {
     color: #ff4c4c;
-    font-weight: bold;
+
+    margin-top: 0;
+
+    text-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
 }
 
-/* Code line highlight */
-.code-line {
-    background: rgba(255, 0, 0, 0.2);
-    padding: 8px;
-    border-left: 4px solid red;
-    margin: 10px 0;
+
+/* ------------------------------
+   Error Information
+------------------------------ */
+
+.information {
+    background: rgba(255, 255, 255, 0.03);
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    color: #e2e8f0;
 }
 
-/* Suggestion */
+
+/* ------------------------------
+   Problematic Code
+------------------------------ */
+
+.code-box {
+    margin-top: 20px;
+}
+
+
+.code-box h3 {
+    color: #ffcc00;
+}
+
+
+.code-box pre {
+    background: #020617;
+
+    color: #00f7ff;
+
+    padding: 12px;
+
+    border-left: 4px solid #ff4c4c;
+
+    border-radius: 5px;
+
+    overflow-x: auto;
+
+    font-family: "Courier New", monospace;
+}
+
+
+/* ------------------------------
+   Explanation
+------------------------------ */
+
+.explanation {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: rgba(0, 247, 255, 0.05);
+
+    border-left: 4px solid #00f7ff;
+
+    border-radius: 5px;
+
+    color: #dbeafe;
+}
+
+
+.explanation h3 {
+    color: #00f7ff;
+}
+
+
+/* ------------------------------
+   Suggestion
+------------------------------ */
+
 .suggestion {
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background: rgba(0, 255, 156, 0.05);
+
+    border-left: 4px solid #00ff9c;
+
+    border-radius: 5px;
+
     color: #00ff9c;
-    font-weight: bold;
 }
 
-/* Success */
-.success {
+
+.suggestion h3 {
     color: #00ff9c;
-    font-size: 18px;
+}
+
+
+/* ------------------------------
+   Success Message
+------------------------------ */
+
+.success {
+    padding: 20px;
+
+    border: 1px solid #00ff9c;
+
+    border-radius: 10px;
+
+    background: rgba(0, 255, 156, 0.05);
+
+    box-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+
+    color: #00ff9c;
+
+    text-align: center;
+}
+
+
+.success h2 {
+    text-shadow: 0 0 10px rgba(0, 255, 156, 0.6);
+}
+
+
+/* ------------------------------
+   Supported Errors
+------------------------------ */
+
+.supported {
+    margin-top: 30px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.02);
+
+    color: #94a3b8;
+}
+
+
+.supported h3 {
+    color: #00f7ff;
+}
+
+
+/* ------------------------------
+   Footer
+------------------------------ */
+
+footer {
+    text-align: center;
+
+    margin-top: 35px;
+
+    color: #475569;
+
+    font-size: 13px;
+}
+
+
+/* ------------------------------
+   Mobile Screen
+------------------------------ */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+        padding: 25px 0;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    textarea {
+        height: 250px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin: 0;
+    }
+
+    .clear-button {
+        margin-left: 0;
+    }
+
 }

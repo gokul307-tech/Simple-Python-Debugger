@@ -1,100 +1,92 @@
 from flask import Flask, render_template, request
-import traceback
-import os
+
+from analyzer import analyze_code
+from suggestions import get_suggestion, get_explanation
+
 
 app = Flask(__name__)
-
-# Suggestions
-SUGGESTIONS = {
-    "SyntaxError": "Check for missing ':' or brackets.",
-    "NameError": "Variable not defined.",
-    "TypeError": "Wrong data types used.",
-    "IndentationError": "Fix indentation.",
-    "ZeroDivisionError": "Cannot divide by zero."
-}
-
-
-def check_code(code):
-    try:
-        compile(code, "user_code.py", "exec")
-
-        # ⚠ Safe execution (restricted built-ins)
-        exec(code, {"__builtins__": {}})
-
-        return None
-
-    except SyntaxError as e:
-        return {
-            "type": "SyntaxError",
-            "message": e.msg,
-            "line": e.lineno
-        }
-
-    except Exception as e:
-        tb = traceback.extract_tb(e.__traceback__)
-        line = None
-
-        # Get correct user line
-        for entry in reversed(tb):
-            if entry.filename == "user_code.py":
-                line = entry.lineno
-                break
-
-        return {
-            "type": type(e).__name__,
-            "message": str(e),
-            "line": line
-        }
-
-
-def get_suggestion(error):
-    etype = error["type"]
-    msg = error["message"]
-
-    suggestion = SUGGESTIONS.get(etype, "Check your code")
-
-    if etype == "SyntaxError" and "expected ':'" in msg:
-        suggestion = "Add ':' at the end of if/for/while"
-
-    if etype == "NameError":
-        suggestion = "Define the variable before using it"
-
-    if etype == "TypeError" and "unsupported operand" in msg:
-        suggestion = "Use compatible data types"
-
-    return suggestion
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+
     result = None
     code = ""
-    error_line = ""
 
     if request.method == "POST":
+
+        # Get code from the textarea
         code = request.form.get("code", "")
 
-        error = check_code(code)
+        # Remove unnecessary spaces at the beginning/end
+        code = code.strip()
 
-        if error:
-            lines = code.split("\n")
-
-            if error["line"] and error["line"] <= len(lines):
-                error_line = lines[error["line"] - 1]
+        # Check whether the user entered anything
+        if not code:
 
             result = {
-                "type": error["type"],
-                "message": error["message"],
-                "line": error["line"],
-                "code_line": error_line,
-                "suggestion": get_suggestion(error)
+                "success": False,
+                "type": "EmptyCode",
+                "message": "No Python code was entered.",
+                "line": None,
+                "column": None,
+                "code_line": "",
+                "explanation":
+                    "The debugger needs a Python program to analyze.",
+                "suggestion":
+                    "Enter some Python code and click Analyze Code."
             }
-        else:
-            result = {"success": "No errors found!"}
 
-    return render_template("index.html", result=result, code=code)
+        else:
+
+            # Analyze the Python program
+            error = analyze_code(code)
+
+            if error:
+
+                # Get the line containing the error
+                error_line = ""
+
+                if error["line"]:
+
+                    lines = code.splitlines()
+
+                    if error["line"] <= len(lines):
+                        error_line = lines[
+                            error["line"] - 1
+                        ]
+
+                result = {
+                    "success": False,
+                    "type": error["type"],
+                    "message": error["message"],
+                    "line": error["line"],
+                    "column": error["column"],
+                    "code_line": error_line,
+                    "explanation":
+                        get_explanation(error["type"]),
+                    "suggestion":
+                        get_suggestion(error["type"])
+                }
+
+            else:
+
+                # Code has no detected errors
+                result = {
+                    "success": True,
+                    "message":
+                        "No errors found in your Python program."
+                }
+
+    return render_template(
+        "index.html",
+        result=result,
+        code=code
+    )
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+
+    app.run(
+        debug=True
+    )

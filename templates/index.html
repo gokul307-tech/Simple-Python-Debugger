@@ -1,37 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>⚡ Python Debugger</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Python Debugger</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
+
+
 <body>
 
 <div class="container">
-    <h1>⚡ PYTHON DEBUGGER</h1>
+
+    <h1>🐍 Python Debugger</h1>
+
+    <p class="description">
+        Enter a Python program below and the debugger will
+        check it for common errors.
+    </p>
+
 
     <form method="POST">
-        <textarea name="code" placeholder="Paste your Python code here...">{{ code }}</textarea>
-        <br>
-        <button type="submit">Analyze Code</button>
+
+        <textarea
+            name="code"
+            placeholder="Write your Python code here..."
+            spellcheck="false"
+        >{{ code }}</textarea>
+
+
+        <div class="buttons">
+
+            <button type="submit">
+                🔍 Analyze Code
+            </button>
+
+            <button
+                type="button"
+                onclick="clearCode()"
+                class="clear-button"
+            >
+                Clear
+            </button>
+
+        </div>
+
     </form>
 
+
     {% if result %}
-    <div class="output">
+
+    <div class="result">
+
         {% if result.success %}
-            <p class="success">✅ {{ result.success }}</p>
-        {% else %}
-            <div class="error-box">
-                <p class="error-type">❌ {{ result.type }}</p>
-                <p><b>Message:</b> {{ result.message }}</p>
-                <p><b>Line:</b> {{ result.line }}</p>
-                <p class="code-line">👉 {{ result.code_line }}</p>
-                <p class="suggestion">💡 {{ result.suggestion }}</p>
+
+            <div class="success">
+
+                <h2>✅ No Errors Found</h2>
+
+                <p>
+                    {{ result.message }}
+                </p>
+
             </div>
+
+        {% else %}
+
+            <div class="error">
+
+                <h2>
+                    ❌ {{ result.type }}
+                </h2>
+
+
+                <div class="information">
+
+                    <p>
+                        <strong>Message:</strong>
+                        {{ result.message }}
+                    </p>
+
+
+                    {% if result.line %}
+
+                    <p>
+                        <strong>Line:</strong>
+                        {{ result.line }}
+                    </p>
+
+                    {% endif %}
+
+
+                    {% if result.column %}
+
+                    <p>
+                        <strong>Column:</strong>
+                        {{ result.column }}
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                {% if result.code_line %}
+
+                <div class="code-box">
+
+                    <h3>Problematic Line</h3>
+
+                    <pre>{{ result.code_line }}</pre>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="explanation">
+
+                    <h3>📖 What happened?</h3>
+
+                    <p>
+                        {{ result.explanation }}
+                    </p>
+
+                </div>
+
+
+                <div class="suggestion">
+
+                    <h3>💡 How to fix it</h3>
+
+                    <p>
+                        {{ result.suggestion }}
+                    </p>
+
+                </div>
+
+            </div>
+
         {% endif %}
+
     </div>
+
     {% endif %}
+
+
+    <div class="supported">
+
+        <h3>Supported Common Errors</h3>
+
+        <p>
+            SyntaxError • IndentationError • NameError • TypeError
+            • ValueError • IndexError • KeyError • AttributeError
+            • ZeroDivisionError • FileNotFoundError
+            • ModuleNotFoundError
+        </p>
+
+    </div>
+
+
+    <footer>
+
+        <p>
+            Simple Python Debugger
+        </p>
+
+        <p>
+            Beginner-level Python project
+        </p>
+
+    </footer>
+
 </div>
 
+
+<script>
+
+function clearCode() {
+
+    document.querySelector("textarea").value = "";
+
+}
+
+</script>
+
 </body>
+
 </html>
