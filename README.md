@@ -5,20 +5,28 @@ A **beginner-friendly Python debugging tool** built to answer one simple questio
 ## The Journey
 **Week 1** — Understanding Errors
 I started by studying common Python errors such as SyntaxError, NameError, TypeError, IndexError, and ZeroDivisionError. I also planned what a beginner-friendly debugger should provide.
+
 **Week 2** — Building the Analyzer
 I created the first analyzer.py and used Python's compile() function to detect syntax errors and identify their line numbers.
+
 **Week 3** — Runtime Errors
 I added runtime error detection using exec(), try-except, and Python's traceback module.
+
 **Week 4** — Finding the Exact Line
 I improved traceback handling so the debugger could identify the error line from the user's code instead of the debugger itself.
+
 **Week 5** — Building the Web App
 I connected the analyzer to Flask and created a simple webpage where users could enter Python code and analyze it.
+
 **Week 6** — Adding Suggestions
 I created suggestions.py to provide simple explanations and possible fixes instead of only showing Python's error message.
+
 **Week 7** — Designing the Interface
 I created the CSS and developed a dark, terminal-inspired interface with error highlighting and beginner-friendly results.
+
 **Week 8** — Testing & GitHub
 I tested the debugger using larger Python programs, fixed issues, cleaned the project structure, and uploaded the completed project to GitHub.
+
 ## Features
  Runtime error detection
 Error type identification
@@ -28,12 +36,14 @@ Problematic code display
 Beginner-friendly explanations
 Fix suggestions
 Simple web interface
+
 ## Technologies
 Python
 Flask
 HTML
 CSS
 Git & GitHub
+
 ## Project Structure
 Simple-Python-Debugger/
 │
@@ -49,6 +59,8 @@ Simple-Python-Debugger/
 │
 └── static/
     └── style.css
+
+
 **Run Locally**
 git clone https://github.com/gokul307-tech/Simple-Python-Debugger.git
 cd Simple-Python-Debugger
@@ -56,9 +68,11 @@ pip install -r requirements.txt
 python app.py
 Then open:
 http://127.0.0.1:5000
+
 ## Current Scope
 This is a beginner-level Python debugger designed for individual Python programs.
 It is not intended for debugging complete applications, mobile apps, or multi-file projects.
+
 ## Future Ideas
 AI-powered explanations
 Logical error detection
@@ -66,6 +80,6 @@ Breakpoints
 Variable tracking
 Step-by-step debugging
 Code quality suggestions
+
 ## Author
 Gokul Vasan
-Every error became a lesson. Every bug became another problem to solve
