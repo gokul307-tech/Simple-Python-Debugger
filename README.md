@@ -46,17 +46,29 @@ Git & GitHub
 
 ## Project Structure
 Simple-Python-Debugger/
+
 │
+
 ├── app.py
+
 ├── analyzer.py
+
 ├── suggestions.py
+
 ├── requirements.txt
+
 ├── Procfile
+
 ├── .gitignore
+
 │
+
 ├── templates/
+
 │   └── index.html
+
 │
+
 └── static/
     └── style.css
 
