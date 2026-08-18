@@ -70,7 +70,7 @@ Simple-Python-Debugger/
 │
 
 └── static/
-    └── style.css
+     style.css
 
 
 **Run Locally**
@@ -81,20 +81,9 @@ python app.py
 Then open:
 http://127.0.0.1:5000
 
-## Current Scope
-This is a beginner-level Python debugger designed for individual Python programs.
-It is not intended for debugging complete applications, mobile apps, or multi-file projects.
-
-## Future Ideas
-AI-powered explanations
-Logical error detection
-Breakpoints
-Variable tracking
-Step-by-step debugging
-Code quality suggestions
 
 ## Author
-Gokul Vasan
+Gokulavasan
 
 # Website link 
 [Click to check my debugger..!!](https://simple-python-debugger.vercel.app/)
